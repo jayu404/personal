@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <title>{% block title %}My Website{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <style>
+
+        /* Reset default margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1; /* Ensures content pushes footer down */
+            padding: 20px;
+        }
+
+        /* Navbar Fix */
+        .navbar {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            margin-bottom:0 !important;
+            padding-bottom:0 !important;
+        }
+
+        .container-fluid {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        /* Footer Fix */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+        }
+        .navbar-brand img {
+    background: transparent; /* Ensures no white background */
+    border-radius: 50%; /* Ensures circular shape */}
+    main {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+.mouse-trail {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: cyan;
+    border-radius: 50%;
+    pointer-events: none;
+    transition: transform 0.2s, opacity 0.3s;
+    box-shadow: 0 0 5px cyan, 0 0 10px cyan;
+}
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: #0d1117; /* Dark background for contrast */
+}
+
+
+        {% block style %}{% endblock %}
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+        <img src="{{ url_for('static', filename='Jayu.png') }}" alt="Logo" height="50">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/hobbies">Hobbies</a></li>
+        <li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main>
+    {% block main %}{% endblock %}
+</main>
+
+<footer>
+    &copy; 2025 Jayesh R. All rights reserved.
+</footer>
+<div id="particles-js"></div>
+
+</body>
+<script>
+    document.addEventListener("mousemove", function (e) {
+    let trail = document.createElement("div");
+    trail.className = "mouse-trail";
+    document.body.appendChild(trail);
+
+    trail.style.left = `${e.pageX}px`;
+    trail.style.top = `${e.pageY}px`;
+
+    setTimeout(() => {
+        trail.style.opacity = "0";
+        setTimeout(() => trail.remove(), 300);
+    }, 200);
+});
+ {% block script %}
+    {% endblock %}
+</script>
+<script>
+    particlesJS("particles-js", {
+    particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: false },
+        size: { value: 3, random: true },
+        move: { enable: true, speed: 3, direction: "none" }
+    },
+    interactivity: {
+        events: {
+            onhover: { enable: true, mode: "repulse" },
+            onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+            repulse: { distance: 100 },
+            push: { particles_nb: 4 }
+        }
+    }
+});
+
+</script>
+
+</html>

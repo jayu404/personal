@@ -1,0 +1,295 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    main {
+        display: block; /* Make the main section behave as a block element */
+        background: linear-gradient(to right);
+        color: white;
+        padding: 50px;
+        text-align: center;
+    }
+
+    .content-container {
+        display: flex;
+        max-width: 1200px;
+        width: 100%;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+        gap: 100px;
+        margin: 0 auto;
+    }
+
+    .text-content {
+        max-width: 50%;
+    }
+
+    .profile-image img {
+        width: 180%;
+        height: auto;
+        border-radius: 15px;
+    }
+
+    /* Cursor styles */
+    .cursor::after {
+        content: "|";
+        display: inline-block;
+        margin-left: 5px;
+        animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+        50% {
+            opacity: 0;
+        }
+    }
+
+    /* Skills Section Styling */
+    .skills-section {
+        background-color: #6f42c1; /* Choose your background color */
+        padding: 50px 0;
+        text-align: center;
+        margin-top: 0px; /* Ensure it starts after the previous section */
+        margin-bottom:70px;
+        border-radius: 20px; /* Round corners for the entire block */
+        overflow: hidden; /* Ensures inner elements with rounded corners are clipped */
+    }
+
+    .skills-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+
+    .skill {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px; /* Round corners for each skill box */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        width: 120px;
+        text-align: center;
+    }
+
+    .skill img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+    animation: float 3s infinite ease-in-out;
+
+    }
+
+    .skill h3 {
+        margin-bottom: 10px;
+    }
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+.testimonial-container {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    width: 100%;
+    background: #333;
+    padding: 20px 0;
+}
+
+.testimonial-slider {
+    display: flex;
+    width: 100%; /* Make the width fit the parent */
+    animation: scrollLeft 20s linear infinite;
+}
+
+.testimonial {
+    display: flex;
+    align-items: center;
+    background: #6f42c1;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    min-width: 300px;
+}
+
+.testimonial img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+/* Keyframes for seamless scrolling */
+@keyframes scrollLeft {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); } /* Moves the content by its full width */
+}
+
+
+
+</style>
+{% endblock %}
+
+{% block main %}
+<main>
+    <div class="content-container">
+        <div class="text-content">
+            <p style="background-color: white; color: black; display: inline-block; padding: 5px 10px; border-radius: 5px;">Hi There!</p>
+            <h1 id="static-text" style="font-size: 60px; font-weight: bold; margin: 10px 0;" class="cursor"></h1>
+            <h2 id="typing-text" style="font-size: 40px; font-weight: bold; margin: 10px 0; display: none;" class="cursor"></h2>
+
+            <p style="font-size: 18px;">Check me out to see if you want to hire this monkey.</p>
+            <div style="margin-top: 20px;">
+                <a href="/gallery"><button type="button" class="btn btn-outline-light btn-lg">Gallery</button></a>
+                <a href="/hobbies"><button type="button" class="btn btn-outline-primary btn-lg">Hobbies</button></a>
+            </div>
+        </div>
+        <div class="profile-image">
+            <img src="{{ url_for('static', filename='selfie.png') }}" alt="Your Image">
+        </div>
+    </div>
+</main>
+
+<!-- Skills Section -->
+<div class="skills-section">
+    <h2 style="font-family: 'Orbitron', sans-serif; font-size: 50px; color: cyan; text-shadow: 0 0 10px cyan;" class = "text-light">My Skills</h2>
+    <div class="skills-container">
+        <div class="skill">
+            <img src="{{ url_for('static', filename='python-logo.png') }}" alt="Python">
+            <h3 class = "text-light">Python</h3>
+        </div>
+        <div class="skill">
+            <img src="{{ url_for('static', filename='html-logo.png') }}" alt="HTML">
+            <h3 class = "text-light">HTML</h3>
+        </div>
+        <div class="skill">
+            <img src="{{ url_for('static', filename='css-icon.png') }}" alt="CSS">
+            <h3 class = "text-light">CSS</h3>
+        </div>
+        <div class="skill">
+            <img src="{{ url_for('static', filename='js-icon.png') }}" alt="JavaScript">
+            <h3 class = "text-light">Java</h3>
+        </div>
+        <div class="skill">
+            <img src="{{ url_for('static', filename='sql-icon.png') }}" alt="SQL">
+            <h3 class = "text-light">SQL</h3>
+        </div>
+    </div>
+</div>
+<h2 style="font-family: 'Orbitron', sans-serif; font-size: 50px; color: cyan; text-shadow: 0 0 10px cyan;" class = "text-light">Testimonies</h2>
+<div class="testimonial-container">
+    <div class="testimonial-slider">
+        <!-- Original Set -->
+        <div class="testimonial"><img src="static/person1.png" alt="Person 1"><p>"Jayesh is amazing!"</p></div>
+        <div class="testimonial"><img src="static/face2.jpg" alt="Person 2"><p>"Hardworking and creative!"</p></div>
+        <div class="testimonial"><img src="static/face3.png" alt="Person 3"><p>"LEBRONNNNNNNN!"</p></div>
+        <div class="testimonial"><img src="static/face4.jpg" alt="Person 4"><p>"Super talented!"</p></div>
+
+        <!-- Duplicate Set for Seamless Looping -->
+        <div class="testimonial"><img src="static/person1.png" alt="Person 1"><p>"Jayesh is amazing!"</p></div>
+        <div class="testimonial"><img src="static/face2.jpg" alt="Person 2"><p>"Hardworking and creative!"</p></div>
+        <div class="testimonial"><img src="static/face3.png" alt="Person 3"><p>"LEBRONNNNNNNNN!"</p></div>
+        <div class="testimonial"><img src="static/face4.jpg" alt="Person 4"><p>"Super talented!"</p></div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const introText = "I Am Jayesh"; // The static text "I Am Jayesh"
+        const words = ["A student", "An artist", "A designer", "An athlete"];
+        let wordIndex = 0;
+        let staticTextElement = document.getElementById("static-text");
+        let typingElement = document.getElementById("typing-text");
+        let typingSpeed = 150;
+        let backspacingSpeed = 100;
+
+        function typeWriterEffect(text, element, callback) {
+            let i = 0;
+            element.innerHTML = "";
+            let interval = setInterval(() => {
+                element.innerHTML += text.charAt(i);
+                i++;
+                if (i === text.length) {
+                    clearInterval(interval);
+                    callback();
+                }
+            }, typingSpeed);
+        }
+
+        function backspaceEffect(callback) {
+            let text = typingElement.innerHTML;
+            let i = text.length;
+            let interval = setInterval(() => {
+                typingElement.innerHTML = text.substring(0, i - 1);
+                i--;
+                if (i === 0) {
+                    clearInterval(interval);
+                    callback();
+                }
+            }, backspacingSpeed);
+        }
+
+        function cycleWords() {
+            // Show the second line (words will be typed here)
+            typingElement.style.display = "inline-block";
+            typingElement.classList.add("cursor"); // Add the cursor to the second line
+
+            function cycleLoop() {
+                typeWriterEffect(words[wordIndex], typingElement, () => {
+                    setTimeout(() => {
+                        backspaceEffect(() => {
+                            wordIndex = (wordIndex + 1) % words.length;
+                            cycleLoop();
+                        });
+                    }, 1000);
+                });
+            }
+            cycleLoop();
+        }
+
+        // Type "I Am Jayesh"
+        typeWriterEffect(introText, staticTextElement, () => {
+            staticTextElement.classList.remove("cursor"); // Remove the cursor from the first line
+            setTimeout(() => {
+                cycleWords(); // Start the second typing loop
+            }, 500);
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const testimonialSlider = document.querySelector('.testimonial-slider');
+    const testimonials = document.querySelectorAll('.testimonial');
+
+    // Clone all the testimonials and append to the slider
+    testimonials.forEach(testimonial => {
+        const clone = testimonial.cloneNode(true);
+        testimonialSlider.appendChild(clone);
+    });
+});
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

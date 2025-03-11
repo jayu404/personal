@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Screen</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('{{ url_for("static", filename="destinybg.jpg") }}') no-repeat center center/cover;
+            text-align: center;
+
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .title {
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 30px;
+            margin-top: -10px;
+        }
+
+        .btn-enter {
+            font-size: 18px;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 2px solid ;
+            background-color: transparent;
+            color: white;
+            transition: 0.3s ease-in-out;
+        }
+
+        .btn-enter:hover {
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">JAYESH RUNGTA</h1>
+        <h2 class="subtitle">THE WEBSITE</h2>
+        <button type="button" class="btn btn-light btn-lg"  onclick = "goToHome()">Enter</button>
+    </div>
+
+    <script>
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                goToHome();
+            }
+        });
+
+        function goToHome() {
+            window.location.href = "/home";  // Redirect to the home page
+        }
+    </script>
+</body>
+</html>
